@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="./WEB-INF/template/master.xhtml">
+            <ui:define name="principal">
+                <p:panel id="frmTeste" header="#{msg.frmmedico}" footer="Preencha todo o formulário">
+            <h:form>
+                <b:messages />
+                <b:panelGrid columns="2">
+                    <h:outputText value="#{msg.name}" /> 
+
+                    <b:inputText value="#{formulario.nome}" required="true" />
+                    
+                    <h:outputText value="#{msg.email}" /> 
+                    <b:inputText value="#{formulario.email}"/>
+                </b:panelGrid>
+
+                <p:panelGrid columns="1">
+                <p:commandButton action="#{formulario.salvar()}" value="Cadastrar"/>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+            </ui:define>
+            <ui:define name="coluna1">
+                Coluna1
+            </ui:define>
+            <ui:define name="coluna2">
+                Coluna2
+            </ui:define>
+            <ui:define name="coluna3">
+                Coluna3
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

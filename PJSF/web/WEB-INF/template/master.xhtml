@@ -14,7 +14,7 @@
             <b:navbarLinks>
                 <b:navLink value="Sobre" href="#" />
                 <b:dropMenu value="Cadastrar">
-                    <b:navLink value="Médico" href="#" />
+                    <b:navLink value="Médico" href="./faces/cadMedico.xhtml" />
                     <b:navLink value="Paciente" href="#" />
                     <b:navLink value="Funcionario" href="#" />
                 </b:dropMenu>
@@ -34,19 +34,19 @@
         </b:navBar>
         <b:jumbotron>
             <b:container>
-                <ui:insert name="principal"></ui:insert>
+                <ui:insert name="principal" />
             </b:container>
         </b:jumbotron>
         <b:container>
             <b:row>
                 <b:column col-md="4">
-                    <h1>Coluna 1 </h1>
+                    <ui:insert name="coluna1" />
                 </b:column>
                 <b:column col-md="4">
-                    <h1>Coluna 2</h1>
+                    <ui:insert name="coluna2" />
                 </b:column>
                 <b:column col-md="4">
-                    <h1>Coluna 3</h1>
+                    <ui:insert name="coluna3" />
                 </b:column>
             </b:row>
         </b:container>
