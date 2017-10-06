@@ -6,12 +6,11 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:loadBundle basename="properties.information" var="msg" />
     <h:head>
         <title>#{msg.titulo}</title>
     </h:head>
     <h:body style="padding-top:  50px; padding-bottom: 20px;">
-        <b:navBar brand="ClinicaSys" brandHref="#" inverse="true" fixed="top">
+        <b:navBar brand="#{msg.brandmsg}" brandHref="#" inverse="true" fixed="top">
             <b:navbarLinks>
                 <b:navLink value="Sobre" href="#" />
                 <b:dropMenu value="Cadastrar">
