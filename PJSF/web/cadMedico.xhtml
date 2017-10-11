@@ -17,16 +17,16 @@
                 <b:panelGrid columns="2">
                     <h:outputText value="#{msg.name}" /> 
 
-                    <b:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" required-message="Insira o nome" />
+                    <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
                     
                     <h:outputText value="#{msg.email}" /> 
-                    <b:inputText value="#{medicoBeans.email}"/>
+                    <p:inputText value="#{medicoBeans.email}"required="true" requiredMessage="Insira o email"/>
                 </b:panelGrid>
 
                 <p:panelGrid columns="1" style="border-style: hidden">
                     <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
                 </p:panelGrid>
-                <h:messages />
+                <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
             </h:form>
         </p:panel>
             </ui:define>
