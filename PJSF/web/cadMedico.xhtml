@@ -24,13 +24,23 @@
                     <h:outputText value="#{msg.passwd}" /> 
                     <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
                 </b:panelGrid>
-
+                <p:separator />
                 <p:panelGrid columns="1" style="border-style: hidden">
                     <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
                 </p:panelGrid>
                 <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
             </h:form>
+                   
         </p:panel>
+                                <p:panelGrid columns="1" style="border-style: hidden">
+
+                <h:form><h:dataTable value="#{medicoBeans.mds}" var="medico">
+                        <h:column>#{medico.nome} </h:column>
+                        <h:column> &nbsp;&nbsp;&nbsp;</h:column>
+                        <h:column>#{medico.email} </h:column>
+                    </h:dataTable>
+                </h:form>
+                                </p:panelGrid>
             </ui:define>
             <ui:define name="coluna1">
                 Coluna1

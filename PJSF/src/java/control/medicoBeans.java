@@ -6,12 +6,15 @@
 package control;
 
 import infra.Medico;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,6 +26,7 @@ public class medicoBeans {
     private String nome;
     private String email;
     private String senha;
+    private List<Medico> mds;
 
     public String getNome() {
         return nome;
@@ -68,6 +72,15 @@ public class medicoBeans {
         emf.close();
         return"index";
         
+    }
+
+    public List<Medico> getMds() {    
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("select m from Medico m", Medico.class);
+        this.mds = q.getResultList();
+        em.close();
+        return mds;
     }
     
 }
