@@ -10,47 +10,47 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-         <ui:composition template="./WEB-INF/template/master.xhtml">
+        <ui:composition template="./WEB-INF/template/master.xhtml">
             <ui:define name="principal">
                 <p:panel id="frmTeste" header="#{msg.frmmedico}" footer="Preencha todo o formulário">
-            <h:form>
-                
-                <b:panelGrid columns="2">
-                    <h:outputText value="#{msg.name}" /> 
+                    <h:form>
 
-                    <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
-                    
-                    <h:outputText value="#{msg.email}" /> 
-                    <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
-                    <h:outputText value="#{msg.passwd}" /> 
-                    <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
-                </b:panelGrid>
-                <p:separator />
+                        <b:panelGrid columns="2">
+                            <h:outputText value="#{msg.name}" /> 
+
+                            <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
+
+                            <h:outputText value="#{msg.email}" /> 
+                            <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
+                            <h:outputText value="#{msg.passwd}" /> 
+                            <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
+                        </b:panelGrid>
+                        <p:separator />
+                        <p:panelGrid columns="1" style="border-style: hidden">
+                            <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
+                        </p:panelGrid>
+                        <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
+                    </h:form>
+
+                </p:panel>
                 <p:panelGrid columns="1" style="border-style: hidden">
-                    <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
-                </p:panelGrid>
-                <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
-            </h:form>
-                   
-        </p:panel>
-                                <p:panelGrid columns="1" style="border-style: hidden">
 
-                <h:form>
-                    <p:dataTable value="#{medicoBeans.mds}" var="medico" rows="5" paginator="true">
-                        <p:column>
-                            <f:facet name="header">Nome</f:facet>
-                            #{medico.nome} </p:column>
-                        
+                    <h:form>
+                        <p:dataTable value="#{medicoBeans.mds}" var="medico" rows="5" paginator="true">
+                            <p:column>
+                                <f:facet name="header">Nome</f:facet>
+                                #{medico.nome} </p:column>
+
                             <p:column><f:facet name="header">Email</f:facet> 
-                            #{medico.email} </p:column>
-                        <p:column>
-                            
-                            <f:facet name="header">Remover</f:facet>
-                            <h:commandLink action="#{medicoBeans.excluir(medico)}">Excluir</h:commandLink>
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
-                                </p:panelGrid>
+                                #{medico.email} </p:column>
+                            <p:column>
+
+                                <f:facet name="header">Remover</f:facet>
+                                <h:commandLink action="#{medicoBeans.excluir(medico)}">Excluir</h:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:panelGrid>
             </ui:define>
             <ui:define name="coluna1">
                 Coluna1

@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.transaction.Transaction;
+
 
 /**
  *
@@ -24,10 +24,13 @@ import javax.transaction.Transaction;
 @Named(value = "medicoBeans")
 @RequestScoped
 public class medicoBeans {
+
     private String nome;
     private String email;
     private String senha;
     private List<Medico> mds;
+
+    
 
     public String getNome() {
         return nome;
@@ -52,13 +55,15 @@ public class medicoBeans {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     /**
      * Creates a new instance of medicoBeans
      */
     public medicoBeans() {
+       
     }
-    public String salvar(){
+
+    public String salvar() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
         Medico md = new Medico();
@@ -71,11 +76,11 @@ public class medicoBeans {
         tx.commit();
         em.close();
         emf.close();
-        return"index";
-        
+        return "index";
+
     }
 
-    public List<Medico> getMds() {    
+    public List<Medico> getMds() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select m from Medico m", Medico.class);
@@ -83,7 +88,8 @@ public class medicoBeans {
         em.close();
         return mds;
     }
-    public void excluir(Medico md){
+
+    public void excluir(Medico md) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -93,5 +99,5 @@ public class medicoBeans {
         tx.commit();
         em.close();
     }
-    
+
 }

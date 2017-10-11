@@ -31,13 +31,12 @@ public class Medico implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     private String nome;
-    
+
     private String email;
-    
+
     private String senha;
-    
 
     public String getNome() {
         return nome;
@@ -104,8 +103,5 @@ public class Medico implements Serializable {
     public String toString() {
         return "Medico{" + "id=" + id + ", nome=" + nome + ", email=" + email + '}';
     }
-    
-    
-    
-    
+
 }
