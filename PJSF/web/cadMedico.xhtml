@@ -36,13 +36,12 @@
                                 <p:panelGrid columns="1" style="border-style: hidden">
 
                 <h:form>
-                    <p:dataTable value="#{medicoBeans.mds}" var="medico" rows="5" paginator="true"
-                                 filteredValue="#{medico.nome}">
-                        <p:column sortBy="#{medico.nome}">
+                    <p:dataTable value="#{medicoBeans.mds}" var="medico" rows="5" paginator="true">
+                        <p:column>
                             <f:facet name="header">Nome</f:facet>
                             #{medico.nome} </p:column>
                         
-                            <p:column sortBy="#{medico.email}" ><f:facet name="header">Email</f:facet> 
+                            <p:column><f:facet name="header">Email</f:facet> 
                             #{medico.email} </p:column>
                         <p:column>
                             
