@@ -35,6 +35,9 @@ public class Medico implements Serializable {
     private String nome;
     
     private String email;
+    
+    private String senha;
+    
 
     public String getNome() {
         return nome;
@@ -52,15 +55,21 @@ public class Medico implements Serializable {
         this.email = email;
     }
 
-    
-    
-//Gerado automáticamente (alt+insert)
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.id);
-        hash = 43 * hash + Objects.hashCode(this.nome);
-        hash = 43 * hash + Objects.hashCode(this.email);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.email);
+        hash = 41 * hash + Objects.hashCode(this.senha);
         return hash;
     }
 
@@ -82,18 +91,19 @@ public class Medico implements Serializable {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
-
     @Override
     public String toString() {
         return "Medico{" + "id=" + id + ", nome=" + nome + ", email=" + email + '}';
     }
-    
     
     
     

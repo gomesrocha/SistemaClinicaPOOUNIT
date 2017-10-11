@@ -20,7 +20,9 @@
                     <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
                     
                     <h:outputText value="#{msg.email}" /> 
-                    <p:inputText value="#{medicoBeans.email}"required="true" requiredMessage="Insira o email"/>
+                    <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
+                    <h:outputText value="#{msg.passwd}" /> 
+                    <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
                 </b:panelGrid>
 
                 <p:panelGrid columns="1" style="border-style: hidden">

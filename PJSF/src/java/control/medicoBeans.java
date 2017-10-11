@@ -22,6 +22,7 @@ import javax.persistence.Persistence;
 public class medicoBeans {
     private String nome;
     private String email;
+    private String senha;
 
     public String getNome() {
         return nome;
@@ -38,6 +39,14 @@ public class medicoBeans {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     
     /**
      * Creates a new instance of medicoBeans
@@ -50,6 +59,7 @@ public class medicoBeans {
         Medico md = new Medico();
         md.setNome(this.nome);
         md.setEmail(this.email);
+        md.setSenha(this.senha);
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(md);
