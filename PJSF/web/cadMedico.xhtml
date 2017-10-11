@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -34,11 +35,21 @@
         </p:panel>
                                 <p:panelGrid columns="1" style="border-style: hidden">
 
-                <h:form><h:dataTable value="#{medicoBeans.mds}" var="medico">
-                        <h:column>#{medico.nome} </h:column>
-                        <h:column> &nbsp;&nbsp;&nbsp;</h:column>
-                        <h:column>#{medico.email} </h:column>
-                    </h:dataTable>
+                <h:form>
+                    <p:dataTable value="#{medicoBeans.mds}" var="medico" rows="5" paginator="true"
+                                 filteredValue="#{medico.nome}">
+                        <p:column sortBy="#{medico.nome}">
+                            <f:facet name="header">Nome</f:facet>
+                            #{medico.nome} </p:column>
+                        
+                            <p:column sortBy="#{medico.email}" ><f:facet name="header">Email</f:facet> 
+                            #{medico.email} </p:column>
+                        <p:column>
+                            
+                            <f:facet name="header">Remover</f:facet>
+                            <h:commandLink action="#{medicoBeans.excluir(medico)}">Excluir</h:commandLink>
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
                                 </p:panelGrid>
             </ui:define>

@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.transaction.Transaction;
 
 /**
  *
@@ -75,12 +76,22 @@ public class medicoBeans {
     }
 
     public List<Medico> getMds() {    
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("select m from Medico m", Medico.class);
         this.mds = q.getResultList();
         em.close();
         return mds;
+    }
+    public void excluir(Medico md){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        md = em.merge(md);
+        em.remove(md);
+        tx.commit();
+        em.close();
     }
     
 }
