@@ -13,19 +13,20 @@
             <ui:define name="principal">
                 <p:panel id="frmTeste" header="#{msg.frmmedico}" footer="Preencha todo o formulário">
             <h:form>
-                <b:messages />
+                
                 <b:panelGrid columns="2">
                     <h:outputText value="#{msg.name}" /> 
 
-                    <b:inputText value="#{formulario.nome}" required="true" />
+                    <b:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" required-message="Insira o nome" />
                     
                     <h:outputText value="#{msg.email}" /> 
-                    <b:inputText value="#{formulario.email}"/>
+                    <b:inputText value="#{medicoBeans.email}"/>
                 </b:panelGrid>
 
-                <p:panelGrid columns="1">
-                <p:commandButton action="#{formulario.salvar()}" value="Cadastrar"/>
+                <p:panelGrid columns="1" style="border-style: hidden">
+                    <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
                 </p:panelGrid>
+                <h:messages />
             </h:form>
         </p:panel>
             </ui:define>
