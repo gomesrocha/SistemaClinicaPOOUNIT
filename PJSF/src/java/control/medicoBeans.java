@@ -28,7 +28,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
 
-
 /**
  *
  * @author root
@@ -41,8 +40,6 @@ public class medicoBeans {
     private String email;
     private String senha;
     private List<Medico> mds;
-
-    
 
     public String getNome() {
         return nome;
@@ -72,7 +69,7 @@ public class medicoBeans {
      * Creates a new instance of medicoBeans
      */
     public medicoBeans() {
-       
+
     }
 
     public String salvar() {
@@ -91,7 +88,8 @@ public class medicoBeans {
         return "sucMedico";
 
     }
- public void salvar1() {
+
+    public void salvar1() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
         Medico md = new Medico();
@@ -117,8 +115,9 @@ public class medicoBeans {
         clearComponents(filhos);
 
     }
-    private static void clearComponents(Iterator<UIComponent> filhosid){
-        while(filhosid.hasNext()) {
+
+    private static void clearComponents(Iterator<UIComponent> filhosid) {
+        while (filhosid.hasNext()) {
             UIComponent component = filhosid.next();
             if (component instanceof HtmlInputText) {
                 HtmlInputText com = (HtmlInputText) component;
@@ -137,10 +136,11 @@ public class medicoBeans {
                 com.resetValue();
             }
 
-            clearComponents(component.getFacetsAndChildren());    
+            clearComponents(component.getFacetsAndChildren());
 
         }
     }
+
     public List<Medico> getMds() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();

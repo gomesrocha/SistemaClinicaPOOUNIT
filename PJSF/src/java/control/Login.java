@@ -5,6 +5,7 @@
  */
 package control;
 
+import infra.SessionUtil;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -40,7 +41,16 @@ public class Login implements Serializable {
         this.senha = senha;
     }
     public String loginUser(){
-        return "admin/principal";
+        String url = "";
+        if (this.login.equals("admin") && this.senha.equals("admin")) {
+            url = "/admin/principal?faces-redirect=true";
+            Object b = new Object();
+            SessionUtil.setParam("UsuarioLogado", b);
+        } else {
+            url = "index?faces-redirect=true";
+        }
+        return url;
+
     }
     
 }

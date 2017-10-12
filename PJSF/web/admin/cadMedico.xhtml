@@ -10,30 +10,30 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <ui:composition template="./WEB-INF/template/master.xhtml">
+        <ui:composition template="../WEB-INF/template/master.xhtml">
             <ui:define name="principal">
                 <p:panel id="frmTeste" header="#{msg.frmmedico}" footer="Preencha todo o formulário">
                     <h:form id="form">
                         <p:panel id="panelForm">
-                        <b:panelGrid columns="2">
-                            <h:outputText value="#{msg.name}" /> 
+                            <b:panelGrid columns="2">
+                                <h:outputText value="#{msg.name}" /> 
 
-                            <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
+                                <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
 
-                            <h:outputText value="#{msg.email}" /> 
-                            <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
-                            <h:outputText value="#{msg.passwd}" /> 
-                            <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
-                        </b:panelGrid>
-                        <p:separator />
-                        <p:panelGrid columns="1" style="border-style: hidden">
-                            <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
-                            <p:commandButton action="#{medicoBeans.salvar1()}" value="Cadastrar"/>
-                        </p:panelGrid>
-                        <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
+                                <h:outputText value="#{msg.email}" /> 
+                                <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
+                                <h:outputText value="#{msg.passwd}" /> 
+                                <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
+                            </b:panelGrid>
+                            <p:separator />
+                            <p:panelGrid columns="1" style="border-style: hidden">
+                                <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
+                                <p:commandButton action="#{medicoBeans.salvar1()}" value="Cadastrar"/>
+                            </p:panelGrid>
+                            <p:messages showDetail="true" rendered="true" autoUpdate="true"/>
                         </p:panel>
                     </h:form>
-        
+
                 </p:panel>
                 <p:panelGrid columns="1" style="border-style: hidden">
 

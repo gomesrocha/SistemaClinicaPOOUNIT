@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 
     private String login;
     private String senha;
-    
+
     public Long getId() {
         return id;
     }
@@ -88,6 +88,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "Usuario{" + "id=" + id + ", login=" + login + '}';
     }
-    
-    
+
 }
