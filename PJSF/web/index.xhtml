@@ -4,26 +4,44 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>#{msg.titulo}</title>
     </h:head>
-    <h:body>
+    <h:body style="padding-top:  50px; padding-bottom: 20px;">
+        <b:navBar brand="#{msg.brandmsg}" brandHref="./index.xhtml" inverse="true" fixed="top">
+            
+            <h:form styleClass="navbar-form navbar-right">
+                <div class="form-group">
+                    <b:inputText placeholder="Email" fieldSize="sm" value="#{login.login}"/>
+                </div>
+                <div class="form-group">
+                    <b:inputSecret  fieldSize="sm" value="#{login.senha}" />
+                </div>
+                <div class="form-group">
+                    <b:commandButton value="Login" look="sucess" icon="chevron-right"
+                                     iconAlign="right" action="#{login.loginUser()}" />
+                </div>
+            </h:form>
+        </b:navBar>
+        <b:jumbotron>
+            Sejam bem vindo
+        </b:jumbotron>
+        <b:container>
+            <b:row>
+                <b:column col-md="4">
+                    <ui:insert name="coluna1" />
+                </b:column>
+                <b:column col-md="4">
+                    <ui:insert name="coluna2" />
+                </b:column>
+                <b:column col-md="4">
+                    <ui:insert name="coluna3" />
+                </b:column>
+            </b:row>
+        </b:container>
 
-        <ui:composition template="./WEB-INF/template/master.xhtml">
-            <ui:define name="principal">
-                Teste
-            </ui:define>
-            <ui:define name="coluna1">
-                Coluna1
-            </ui:define>
-            <ui:define name="coluna2">
-                Coluna2
-            </ui:define>
-            <ui:define name="coluna3">
-                Coluna3
-            </ui:define>
-        </ui:composition>
     </h:body>
 </html>
 

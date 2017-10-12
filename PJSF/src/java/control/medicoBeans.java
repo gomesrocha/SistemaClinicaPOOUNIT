@@ -7,14 +7,26 @@ package control;
 
 import infra.Medico;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.html.HtmlSelectBooleanCheckbox;
+import javax.faces.component.html.HtmlSelectManyCheckbox;
+import javax.faces.component.html.HtmlSelectOneMenu;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import org.primefaces.context.RequestContext;
 
 
 /**
@@ -76,10 +88,59 @@ public class medicoBeans {
         tx.commit();
         em.close();
         emf.close();
-        return "index";
+        return "sucMedico";
 
     }
+ public void salvar1() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
+        EntityManager em = emf.createEntityManager();
+        Medico md = new Medico();
+        md.setNome(this.nome);
+        md.setEmail(this.email);
+        md.setSenha(this.senha);
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(md);
+        tx.commit();
+        em.close();
+        emf.close();
+        md.setEmail("");
+        md.setNome("");
+        md.setSenha("");
+        md = null;
+        FacesMessage msg = new FacesMessage("O usuário " + this.nome + " foi cadastrado com sucesso");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "O usuário " + this.nome + " foi cadastrado"));
+        UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
+        //return view.getViewId() + "?faces-redirect=true";
+        Iterator<UIComponent> filhos = view.getFacetsAndChildren();
+        clearComponents(filhos);
 
+    }
+    private static void clearComponents(Iterator<UIComponent> filhosid){
+        while(filhosid.hasNext()) {
+            UIComponent component = filhosid.next();
+            if (component instanceof HtmlInputText) {
+                HtmlInputText com = (HtmlInputText) component;
+                com.resetValue();
+            }
+            if (component instanceof HtmlSelectOneMenu) {
+                HtmlSelectOneMenu com = (HtmlSelectOneMenu) component;
+                com.resetValue();
+            }
+            if (component instanceof HtmlSelectBooleanCheckbox) {
+                HtmlSelectBooleanCheckbox com = (HtmlSelectBooleanCheckbox) component;
+                com.resetValue();
+            }
+            if (component instanceof HtmlSelectManyCheckbox) {
+                HtmlSelectManyCheckbox com = (HtmlSelectManyCheckbox) component;
+                com.resetValue();
+            }
+
+            clearComponents(component.getFacetsAndChildren());    
+
+        }
+    }
     public List<Medico> getMds() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
