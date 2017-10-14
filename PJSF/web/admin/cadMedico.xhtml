@@ -18,15 +18,42 @@
                             <b:panelGrid columns="2">
                                 <h:outputText value="#{msg.name}" /> 
 
-                                <p:inputText id="txtNome" value="#{medicoBeans.nome}" required="true" requiredMessage="Insira o nome" />
-
+                                <p:inputText id="txtNome" value="#{medicoBeans.md.nome}" required="true" requiredMessage="Insira o nome" />
+                                
                                 <h:outputText value="#{msg.email}" /> 
-                                <p:inputText value="#{medicoBeans.email}" required="true" requiredMessage="Insira o email" />
+                                <p:inputText value="#{medicoBeans.md.email}" required="true" requiredMessage="Insira o email" />
                                 <h:outputText value="#{msg.passwd}" /> 
-                                <p:password value="#{medicoBeans.senha}" required="true" requiredMessage="Insira sua senha" />
+                                <p:password value="#{medicoBeans.md.senha}" required="true" requiredMessage="Insira sua senha" />
+                                <h:outputText value="Fone" /> 
+                                <p:inputText  value="#{medicoBeans.md.fone}" required="true" requiredMessage="Insira sua senha" />
+                                <h:outputText value="Celular" /> 
+                                <p:inputText  value="#{medicoBeans.md.celular}" required="true" requiredMessage="Insira sua senha" />
+                                <h:outputText value="CRM" /> 
+                                <p:inputText  value="#{medicoBeans.md.CRM}" required="true" requiredMessage="Insira sua senha" />
                             </b:panelGrid>
                             <p:separator />
-                            <p:panelGrid columns="1" style="border-style: hidden">
+                    <b:panelGrid columns="2">
+                                <h:outputText value="Logradouro" /> 
+
+                                <p:inputText id="txtLogradouro" value="#{medicoBeans.end.logradouro}" required="true" requiredMessage="Insira o logradouro" />
+                                
+                                <h:outputText value="Numero" /> 
+                                <p:inputText value="#{medicoBeans.end.numero}" required="true" requiredMessage="Insira o numero" />
+                                <h:outputText value="Complemento" /> 
+                                <p:inputText value="#{medicoBeans.end.complemento}" required="true" requiredMessage="Insira o numero" />
+                                <h:outputText value="Bairro" /> 
+                                <p:inputText value="#{medicoBeans.end.bairro}" required="true" requiredMessage="Insira o numero" />
+                                <h:outputText value="Cidade" /> 
+                                <p:inputText value="#{medicoBeans.end.cidade}" required="true" requiredMessage="Insira o numero" />
+                                
+                                <h:outputText value="CEP" /> 
+                                <p:inputText value="#{medicoBeans.end.cep}" required="true" requiredMessage="Insira o numero" />
+                                <h:outputText value="UF" /> 
+                                <p:inputText value="#{medicoBeans.end.uf}" required="true" requiredMessage="Insira o numero" />
+                            </b:panelGrid>
+                            <p:separator />
+                            
+                            <p:panelGrid columns="2" style="border-style: hidden">
                                 <p:commandButton action="#{medicoBeans.salvar()}" value="Cadastrar"/>
                                 <p:commandButton action="#{medicoBeans.salvar1()}" value="Cadastrar"/>
                             </p:panelGrid>

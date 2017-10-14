@@ -22,6 +22,7 @@ public class Login implements Serializable {
      * Creates a new instance of Login
      */
     private String login, senha;
+
     public Login() {
     }
 
@@ -40,7 +41,8 @@ public class Login implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String loginUser(){
+
+    public String loginUser() {
         String url = "";
         if (this.login.equals("admin") && this.senha.equals("admin")) {
             url = "/admin/principal?faces-redirect=true";
@@ -52,5 +54,5 @@ public class Login implements Serializable {
         return url;
 
     }
-    
+
 }

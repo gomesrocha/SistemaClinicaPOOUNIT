@@ -5,6 +5,7 @@
  */
 package control;
 
+import infra.Endereco;
 import infra.Medico;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FlowEvent;
 
 /**
  *
@@ -36,49 +38,58 @@ import org.primefaces.context.RequestContext;
 @RequestScoped
 public class medicoBeans {
 
-    private String nome;
-    private String email;
-    private String senha;
     private List<Medico> mds;
+    private Endereco end;
+    private Medico md;
 
-    public String getNome() {
-        return nome;
+    public Endereco getEnd() {
+        return end;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEnd(Endereco end) {
+        this.end = end;
+    }
+    
+    private boolean skip;
+
+    public boolean isSkip() {
+        return skip;
     }
 
-    public String getEmail() {
-        return email;
+    public void setSkip(boolean skip) {
+        this.skip = skip;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String onFlowProcess(FlowEvent event) {
+        if (skip) {
+            skip = false;   //reset in case user goes back
+            return "confirm";
+        } else {
+            return event.getNewStep();
+        }
     }
 
-    public String getSenha() {
-        return senha;
+    
+    public Medico getMd() {
+        return md;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setMd(Medico md) {
+        this.md = md;
     }
-
+    
     /**
      * Creates a new instance of medicoBeans
      */
     public medicoBeans() {
-
+        end = new Endereco();
+        md = new Medico();
     }
 
     public String salvar() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
-        Medico md = new Medico();
-        md.setNome(this.nome);
-        md.setEmail(this.email);
-        md.setSenha(this.senha);
+        md.setEnd(end);
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(md);
@@ -92,10 +103,7 @@ public class medicoBeans {
     public void salvar1() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PJSFPU");
         EntityManager em = emf.createEntityManager();
-        Medico md = new Medico();
-        md.setNome(this.nome);
-        md.setEmail(this.email);
-        md.setSenha(this.senha);
+        md.setEnd(end);
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(md);
@@ -106,14 +114,13 @@ public class medicoBeans {
         md.setNome("");
         md.setSenha("");
         md = null;
-        FacesMessage msg = new FacesMessage("O usuário " + this.nome + " foi cadastrado com sucesso");
+        FacesMessage msg = new FacesMessage("O usuário " + this.md.getNome() + " foi cadastrado com sucesso");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "O usuário " + this.nome + " foi cadastrado"));
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "O usuário " + this.md.getNome() + " foi cadastrado"));
         UIViewRoot view = FacesContext.getCurrentInstance().getViewRoot();
         //return view.getViewId() + "?faces-redirect=true";
         Iterator<UIComponent> filhos = view.getFacetsAndChildren();
         clearComponents(filhos);
-
     }
 
     private static void clearComponents(Iterator<UIComponent> filhosid) {

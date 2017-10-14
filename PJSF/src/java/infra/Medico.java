@@ -7,10 +7,14 @@ package infra;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import org.primefaces.event.FlowEvent;
 
 /**
  *
@@ -31,12 +35,27 @@ public class Medico implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco end = new Endereco();
+
+    public Endereco getEnd() {
+        return end;
+    }
+
+    public void setEnd(Endereco end) {
+        this.end = end;
+    }
 
     private String nome;
 
     private String email;
 
     private String senha;
+    
+    private String fone;
+    private String celular;
+    private String CRM;
+            
 
     public String getNome() {
         return nome;
@@ -62,13 +81,41 @@ public class Medico implements Serializable {
         this.senha = senha;
     }
 
+    public String getFone() {
+        return fone;
+    }
+
+    public void setFone(String fone) {
+        this.fone = fone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getCRM() {
+        return CRM;
+    }
+
+    public void setCRM(String CRM) {
+        this.CRM = CRM;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.nome);
-        hash = 41 * hash + Objects.hashCode(this.email);
-        hash = 41 * hash + Objects.hashCode(this.senha);
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.end);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.senha);
+        hash = 97 * hash + Objects.hashCode(this.fone);
+        hash = 97 * hash + Objects.hashCode(this.celular);
+        hash = 97 * hash + Objects.hashCode(this.CRM);
         return hash;
     }
 
@@ -93,7 +140,19 @@ public class Medico implements Serializable {
         if (!Objects.equals(this.senha, other.senha)) {
             return false;
         }
+        if (!Objects.equals(this.fone, other.fone)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        if (!Objects.equals(this.CRM, other.CRM)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.end, other.end)) {
             return false;
         }
         return true;
@@ -101,7 +160,9 @@ public class Medico implements Serializable {
 
     @Override
     public String toString() {
-        return "Medico{" + "id=" + id + ", nome=" + nome + ", email=" + email + '}';
+        return "Medico{" + "id=" + id + ", end=" + end + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", fone=" + fone + ", celular=" + celular + ", CRM=" + CRM + '}';
     }
+    
+
 
 }
