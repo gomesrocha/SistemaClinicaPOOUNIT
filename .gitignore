@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+/PJSF/nbproject/private/
+/PJSF/build/
+/PJSF/dist/
